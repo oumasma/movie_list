@@ -1,11 +1,14 @@
+const searchBar = document.getElementById('search');
+
 const displayResults = (data) => {
     data.Search.forEach(movie => {
-        displayMovie(movie);    
+        displayMovie(movie);
+        console.log(data);    
     });
 }
 
 const searchMovie = (searchTerm) => {
-    fetch(`http://www.omdbapi.com/?s=${searchTerm}&apikey=fa8340f8`)
+    fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=${searchTerm}`)
         .then((response) => response.json())
         .then((data) => displayResults(data))
         .catch((error) => console.error('error :', error))
