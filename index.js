@@ -1,9 +1,14 @@
 const searchBar = document.getElementById('search');
 
+
+const searchTitle = () => {
+    searchTerm = searchBar.value;
+    searchMovie(searchTerm);
+};
+
 const displayResults = (data) => {
     data.Search.forEach(movie => {
         displayMovie(movie);
-        console.log(data);    
     });
 }
 
@@ -13,10 +18,6 @@ const searchMovie = (searchTerm) => {
         .then((data) => displayResults(data))
         .catch((error) => console.error('error :', error))
 }
-
-searchMovie("rambo");
-
-
 
 
 const displayMovie = (movie) => {
@@ -39,10 +40,20 @@ const displayMovie = (movie) => {
 
 const showMovie = (area, url, title, year) => {
 area.innerHTML += `
-    <div>
-        <img src='${url}' alt='' />
-        <p>${title}</p>
-        <p>${year}</p>
+    <div class="col-lg-4 col-md-6 col-sm-6 fade-in">
+        <div class="mb-30">
+            <div >
+                <img src='${url}' alt='' />
+            </div>
+            <div class="location-details">
+                <p>${title}</p>
+                <p><small>${year}</small></p>
+                <a class="location-btn">En savoir plus</a>
+            </div>
+        </div>
     </div>
 `
 }
+
+const searchButton = document.getElementById("submit");
+    searchButton.addEventListener('click', searchTitle);
